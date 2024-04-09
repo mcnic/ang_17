@@ -4,22 +4,19 @@ import { Hero } from '../hero';
 import { HeroDetailComponent } from '../hero-detail/hero-detail.component';
 import { HeroService } from '../hero.service';
 import { MessageService } from '../message.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.css'],
   standalone: true,
-  imports: [NgFor, HeroDetailComponent],
+  imports: [NgFor, HeroDetailComponent, RouterLink],
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[] = [];
-  selectedHero?: Hero;
 
-  constructor(
-    private heroService: HeroService,
-    private messageService: MessageService
-  ) {}
+  constructor(private heroService: HeroService) {}
 
   ngOnInit(): void {
     this.getHeroes();
@@ -29,10 +26,5 @@ export class HeroesComponent implements OnInit {
     this.heroService.getHeroes().subscribe((heroes) => {
       this.heroes = heroes;
     });
-  }
-
-  onSelect(hero: Hero) {
-    this.selectedHero = hero;
-    this.messageService.add(`select ${hero.name}`);
   }
 }
