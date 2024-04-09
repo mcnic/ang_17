@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { HousingLocation } from '../housingLocation';
+import { HousingService } from '../housing.service';
 
 @Component({
   selector: 'app-housing-location',
@@ -7,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
   standalone: true,
 })
 export class HousingLocationComponent implements OnInit {
+  @Input() housingLocation!: HousingLocation;
+
   constructor() {}
 
   ngOnInit() {}
