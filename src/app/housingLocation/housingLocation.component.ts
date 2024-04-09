@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { HousingLocation } from '../housingLocation';
 import { HousingService } from '../housing.service';
 import { RouterModule } from '@angular/router';
@@ -10,10 +10,6 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [RouterModule],
 })
-export class HousingLocationComponent implements OnInit {
+export class HousingLocationComponent {
   @Input() housingLocation!: HousingLocation;
-
-  constructor() {}
-
-  ngOnInit() {}
 }
