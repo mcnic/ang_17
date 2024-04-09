@@ -12,9 +12,24 @@ import { HousingService } from '../housing.service';
   imports: [CommonModule, HousingLocationComponent],
 })
 export class HomeComponent implements OnInit {
-  housingLocationList = this.housingService.getAllHousingLocations();
+  housingLocationList: HousingLocation[] = [];
+  filteredLocationList: HousingLocation[] = [];
 
-  constructor(readonly housingService: HousingService) {}
+  constructor(readonly housingService: HousingService) {
+    this.housingLocationList = housingService.getAllHousingLocations();
+    this.filteredLocationList = this.housingLocationList;
+  }
+
+  filterResults(text: string) {
+    console.log('filter', text);
+    if (!text) {
+      this.filteredLocationList = this.housingLocationList;
+    }
+
+    this.filteredLocationList = this.housingLocationList.filter((e) =>
+      e.city.toLowerCase().includes(text.toLowerCase())
+    );
+  }
 
   ngOnInit() {}
 }
